@@ -43,29 +43,37 @@
     </ul>
   </div>
 
- <div v-for="(movie,value) in disney" :key="value">
-    <h2>
-      Movie {{ movie.title }} : {{ movie.year }} - {{movie.year}}
-    </h2>
-    <p v-for="(actor, index) in movie.cast" :key="index">{{index + 1}} : {{actor}}</p>
+  <div v-for="(movie, value) in disney" :key="value">
+    <h2>Movie {{ movie.title }} : {{ movie.year }} - {{ movie.year }}</h2>
+    <p v-for="(actor, index) in movie.cast" :key="index">
+      {{ index + 1 }} : {{ actor }}
+    </p>
   </div>
 
-<p>{{ 3 + 5}}</p>
+  <p>{{ 3 + 5 }}</p>
 
-{{sum(50,50)}}
+  {{ sum(50, 50) }}
 
-<div id="methods">
-  <div id="methods-part-1">
+  <div id="methods">
+    <div id="methods-part-1"></div>
+    <div id="methods-part-2"></div>
+    <h1>{{ nameEvent }}</h1>
+    <button @click="nameEvent = 'Lebron James'">Click me to change name</button>
+    <h2>{{ count }}</h2>
+    <button @click="increment">plus</button>
+    <button @click="count--">plus</button>
 
+    <button @click="changeName">kamalakan</button>
+    <hr />
+    <h3>{{ countER }}</h3>
+    <button @click="multiply">MULTIPLY * 2</button>
+    <button @click="decrement">DECREMENT 15</button>
+    <button @click="reset">RESET</button>
+    <hr />
+
+    {{ injected }}
+    <button @click="injected = 'Melocoton'">Cambia de fruta</button>
   </div>
-  <div id="methods-part-2"></div>
-  <h1>{{nameEvent}}</h1>
-  <button @click="nameEvent = 'Lebron James'">Click me to change name</button>
-  <h2>{{count}}</h2>
-  <button @click="(increment)">plus</button>
-  <button @click="(count--)">plus</button>
-</div>
-  
 </template>
 
 <script>
@@ -76,7 +84,8 @@ export default {
       fruta: "naranja",
       showElement: true,
       names: ["diego", "jarko", "alex"],
-      nameEvent:'Michael Jordan',
+      nameEvent: "Michael Jordan",
+      countER: 1,
       gringo: {
         name: "Thomas",
         country: "France",
@@ -159,18 +168,37 @@ export default {
           genres: ["Superhero"],
         },
       ],
+      nameEve: "nada",
     };
   },
   methods: {
     say(message) {
       alert(message);
     },
-    sum(a, b){
-      return a + b
+    sum(a, b) {
+      return a + b;
     },
-    increment(){
+    increment() {
       this.count += 1;
-    }
+    },
+    multiply(event) {
+      this.countER *= 2;
+      console.log(event);
+    },
+    decrement(event) {
+      this.countER -= 15;
+      console.log(event);
+    },
+    display(data) {
+      return data;
+    },
+    changeName(event) {
+      this.nameEve = "Stunning Green";
+      console.log(event);
+    },
+    reset() {
+      this.countER *= 0;
+    },
   },
 };
 </script>
