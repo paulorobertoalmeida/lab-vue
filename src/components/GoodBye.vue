@@ -20,10 +20,52 @@
     <button @click="say('hi')">Say hi</button>
     <hr />
 
-    <h1 v-for="(name, value) in names" :key="value"> {{value + 1}} : {{name.toUpperCase()}}</h1>
-    
-    
+    <h1 v-for="(name, value) in names" :key="value">
+      {{ value + 1 }} : {{ name.toUpperCase() }}
+    </h1>
+
+    <ul v-for="(band, index) in bands" :key="index">
+      <li>
+        {{ band.name }}
+      </li>
+      <li>{{ index + 1 }}: {{ band.name }} : {{ band.genre }}</li>
+      <span
+        v-if="band.genre == 'Heavy-metal'"
+        :style="{ 'background-color': 'red', color: 'white' }"
+      >
+        {{ band.name }} heavy-metal</span
+      >
+      <span v-else> {{ band.name }} is not heavy</span>
+    </ul>
+    <hr />
+    <ul v-for="(key, value, index) in gringo" :key="index">
+      <li>{{ value }}</li>
+    </ul>
   </div>
+
+ <div v-for="(movie,value) in disney" :key="value">
+    <h2>
+      Movie {{ movie.title }} : {{ movie.year }} - {{movie.year}}
+    </h2>
+    <p v-for="(actor, index) in movie.cast" :key="index">{{index + 1}} : {{actor}}</p>
+  </div>
+
+<p>{{ 3 + 5}}</p>
+
+{{sum(50,50)}}
+
+<div id="methods">
+  <div id="methods-part-1">
+
+  </div>
+  <div id="methods-part-2"></div>
+  <h1>{{nameEvent}}</h1>
+  <button @click="nameEvent = 'Lebron James'">Click me to change name</button>
+  <h2>{{count}}</h2>
+  <button @click="(increment)">plus</button>
+  <button @click="(count--)">plus</button>
+</div>
+  
 </template>
 
 <script>
@@ -33,7 +75,13 @@ export default {
       injected: "me encanta las manzanas",
       fruta: "naranja",
       showElement: true,
-      names:['diego', 'jarko', 'alex'],
+      names: ["diego", "jarko", "alex"],
+      nameEvent:'Michael Jordan',
+      gringo: {
+        name: "Thomas",
+        country: "France",
+        food: "croissant",
+      },
       posts: [
         {
           name: "Paulo",
@@ -55,12 +103,74 @@ export default {
       canDrink: true,
       cantDrink: "No puede beber",
       count: 0,
+      countPlus: 0,
+      bands: [
+        {
+          name: "Metallica",
+          genre: "Heavy-metal",
+        },
+        {
+          name: "The Strokes",
+          genre: "Garage",
+        },
+        {
+          name: "Marvin Gaye",
+          genre: "soul",
+        },
+        {
+          name: "The Libertines",
+          genre: "Garage",
+        },
+        {
+          name: "Megadeth",
+          genre: "Heavy-metal",
+        },
+      ],
+      disney: [
+        // ...
+        {
+          title: "Avengers: Age of Ultron",
+          year: 2015,
+          cast: [
+            "Robert Downey, Jr.",
+            "Chris Evans",
+            "Chris Hemsworth",
+            "Mark Ruffalo",
+          ],
+          genres: ["Action"],
+        },
+        // ...
+        {
+          title: "The Avengers",
+          year: 2012,
+          cast: [
+            "Robert Downey, Jr.",
+            "Chris Evans",
+            "Mark Ruffalo",
+            "Chris Hemsworth",
+            "Scarlett Johansson",
+            "Jeremy Renner",
+            "Tom Hiddleston",
+            "Clark Gregg",
+            "Cobie Smulders",
+            "Stellan Skarsgård",
+            "Samuel L. Jackson",
+          ],
+          genres: ["Superhero"],
+        },
+      ],
     };
   },
   methods: {
     say(message) {
       alert(message);
     },
+    sum(a, b){
+      return a + b
+    },
+    increment(){
+      this.count += 1;
+    }
   },
 };
 </script>
