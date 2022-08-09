@@ -6,13 +6,23 @@
     {{ injected }} <br />
     <span v-html="html"></span>
     {{ fruta }}
+
+    <span
+      v-if="post.age >= 21 && canDrink"
+      :style="{ 'background-color': 'green', color: 'yellow' }"
+    >
+      De Acurdo con su edad tu Puedes beber 😎</span
+    >
+    <span v-else :style="{ 'background-color': 'red', color: 'white' }"
+      >De acuerdo con su edad no puedes beber 😩</span
+    >
     <br />
-    <span v-if="post.age >= 21 && canDrink"> 'Puedo beber'</span>
-    <span v-else>'No puedo beber'</span>
+    <button @click="say('hi')">Say hi</button>
+    <hr />
 
-    <button @click="count++">count is: {{ count }}</button>
-
-
+    <h1 v-for="(name, value) in names" :key="value"> {{value + 1}} : {{name.toUpperCase()}}</h1>
+    
+    
   </div>
 </template>
 
@@ -21,6 +31,9 @@ export default {
   data() {
     return {
       injected: "me encanta las manzanas",
+      fruta: "naranja",
+      showElement: true,
+      names:['diego', 'jarko', 'alex'],
       posts: [
         {
           name: "Paulo",
@@ -43,6 +56,11 @@ export default {
       cantDrink: "No puede beber",
       count: 0,
     };
+  },
+  methods: {
+    say(message) {
+      alert(message);
+    },
   },
 };
 </script>
