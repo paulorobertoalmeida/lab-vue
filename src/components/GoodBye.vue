@@ -73,6 +73,13 @@
 
     {{ injected }}
     <button @click="injected = 'Melocoton'">Cambia de fruta</button>
+
+    <hr />
+
+    <div>
+    <label for="name">Name</label>
+    <input type="text" v-model="formValue.formName" />
+    </div>
   </div>
 </template>
 
@@ -169,6 +176,9 @@ export default {
         },
       ],
       nameEve: "nada",
+      formValue: {
+        formName: "",
+      }
     };
   },
   methods: {
