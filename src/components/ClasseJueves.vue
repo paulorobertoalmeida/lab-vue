@@ -1,23 +1,41 @@
 <template>
-  <h1>
-    hello my name is {{fullName()}}
-  </h1>
+  <div id="computed-part-one">
+    <h1>Guitarrist - {{ firstName }} {{ lastName }}</h1>
+    <h1>Computed Property - Guitarrist {{ favGuitarrist }}</h1>
+
+    <button @click="changeFavGuitarrist">Change Favorite Guitarrist</button>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      firstName:'Paulo',
-      lastName: 'Almeida'
+      firstName: "Gustavo",
+      lastName: "Cerati Martinez",
     };
   },
   methods: {
-    fullName(){
-      return `${this.firstName} ${this.lastName}`
-    }
+    changeFavGuitarrist() {
+      this.favGuitarrist2 = "Cesc Vila";
+    },
   },
-  computed: {},
-  watch: {},
+  computed: {
+    favGuitarrist() {
+      return `${this.firstName} ${this.lastName}`;
+    },
+    favGuitarrist2: {
+      get() {
+        return `${this.firstName} ${this.lastName}`;
+      },
+      set(value) {
+        const name = value.split(" ");
+        this.firstName = name[0];
+        this.lastName = name[1];
+      },
+    },
+  },
 };
 </script>
+
+<style></style>
